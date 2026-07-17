@@ -3,6 +3,7 @@
 ## 1. 使用的 AI 工具
 
 - Trae AI Agent（内部开发的代码助手）
+- OpenAI Codex（用于项目完成度审查、交付文档补齐、测试脚本修正和 Docker/API 验证）
 
 ## 2. 关键提示词
 
@@ -11,6 +12,7 @@
 3. "实现任务 CRUD API，支持筛选、排序和分页"
 4. "编写 Docker Entrypoint 脚本，处理 MySQL 就绪检查"
 5. "修复 Laravel Controller 基类不存在的问题"
+6. "对照实操测试题审查当前 Laravel Docker 项目的完成度"
 
 ## 3. AI 生成的主要内容
 
@@ -18,7 +20,8 @@
 2. **Laravel 代码**: `app/Models/Task.php`、`app/Http/Controllers/TaskController.php`、`database/migrations/2026_07_16_000001_create_tasks_table.php`、`routes/api.php`
 3. **配置文件**: `.env`、`.env.example`、`bootstrap/app.php`
 4. **测试脚本**: `tests/test_api.sh`
-5. **文档**: `README.md`
+5. **文档**: `README.md`、`AI_NOTES.md`、`TEST_ANSWER.md`
+6. **项目审查**: 对照测试文档检查健康检查、CRUD、列表查询、Docker Compose、测试脚本和 AI 记录是否满足要求
 
 ## 4. AI 给出的错误或不适用的建议
 
@@ -34,6 +37,7 @@
 3. **中间件问题**: 通过测试 API 发现验证失败（参数无法获取），移除了 `EnsureFrontendRequestsAreStateful` 中间件。
 4. **健康检查路由**: 通过测试发现返回 HTML 而不是 JSON，移除了 `health` 配置。
 5. **数据库迁移**: 通过查看日志发现 `"--force" option does not exist` 错误，定位到 `routes/console.php` 的问题。
+6. **交付检查**: 使用 Codex 对照测试要求审查项目，并实际运行 `docker compose up --build -d`、`docker compose exec php bash tests/test_api.sh` 和 `curl http://localhost:8000/api/health` 验证服务可启动、接口可访问、测试可通过。
 
 ## 6. 后续改进方向
 

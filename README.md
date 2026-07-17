@@ -34,6 +34,8 @@ docker compose up --build -d
 
 ### 2. 运行数据库迁移
 
+容器启动脚本会自动等待 MySQL 就绪并执行迁移。如需手动执行：
+
 ```bash
 docker compose exec php php artisan migrate
 ```
@@ -41,7 +43,7 @@ docker compose exec php php artisan migrate
 ### 3. 运行测试
 
 ```bash
-docker compose exec php php test.php
+docker compose exec php bash tests/test_api.sh
 ```
 
 ### 4. 停止服务
@@ -265,12 +267,12 @@ POST /api/tasks/{id}/complete
 ├── .env
 ├── .env.example
 ├── README.md
+├── AI_NOTES.md
 ├── AGENT.md
 ├── artisan
 ├── composer.json
 ├── composer.lock
-├── docker-entrypoint.sh
-└── test.php
+└── docker-entrypoint.sh
 ```
 
 ## 环境变量
